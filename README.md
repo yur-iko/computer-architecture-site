@@ -1,3 +1,5 @@
+[Visit my website here!](https://yur-iko.github.io/computer-architechture-site/)
+
 # Computer Architecture Lesson Reader
 
 A static, offline-capable website containing 113 beginner-friendly lessons from Introduction and Chapters 1–5. It includes the full explanations, worked examples, tables, 27 teaching figures, source map, reading plan, and two PDF downloads.
