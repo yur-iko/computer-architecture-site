@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A beginner-friendly Computer Architecture lesson reader: Introduction and Chapters 1–5, with worked MIPS examples, diagrams, and tables.">
+  <meta name="theme-color" content="#f5f1fc">
+  <title>Computer Architecture · Lesson Reader</title>
+  <script>
+    try {
+      const saved = localStorage.getItem('architecture-theme');
+      document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    } catch (_) {}
+  </script>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="assets/lessons.js"></script>
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#reading">Skip to the lesson</a>
+  <header class="site-header">
+    <a class="brand" href="#lesson/I.1" aria-label="Computer Architecture, first lesson">
+      <svg class="brand-symbol" viewBox="0 0 36 36" aria-hidden="true"><rect x="8" y="8" width="20" height="20" rx="4"/><rect x="13" y="13" width="10" height="10" rx="1"/><path d="M13 3v5m10-5v5M13 28v5m10-5v5M3 13h5m-5 10h5M28 13h5m-5 10h5"/></svg>
+      <span>Computer Architecture<small>Learn one idea at a time.</small></span>
+    </a>
+    <div class="header-actions">
+      <button id="menu-toggle" class="button menu-button" type="button" aria-expanded="false" aria-controls="lesson-sidebar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Lessons</button>
+      <button id="theme-toggle" class="button" type="button" aria-label="Switch to dark theme"><svg id="theme-icon" viewBox="0 0 24 24" aria-hidden="true"></svg><span id="theme-label">Dark theme</span></button>
+    </div>
+  </header>
+  <div class="reader-layout">
+    <aside id="lesson-sidebar" class="lesson-sidebar" aria-label="Lesson navigation">
+      <div class="sidebar-tools">
+        <h2>Lessons</h2>
+        <label for="lesson-search">Find a lesson</label>
+        <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="lesson-search" type="search" placeholder="Try “jump” or “cache”" autocomplete="off"></div>
+        <p id="search-status" class="search-status" aria-live="polite">Introduction + Chapters 1–5</p>
+      </div>
+      <nav id="chapter-navigation" aria-label="Chapters and lessons"></nav>
+      <div id="empty-search" class="empty-search" hidden><p>No lessons match this search.</p><button id="clear-search" class="text-button" type="button">Clear search</button></div>
+      <div class="sidebar-resources">
+        <a href="#study" class="resource-link">How to study this guide</a>
+        <a href="#sources" class="resource-link">Source map &amp; corrections</a>
+        <div class="pdf-links"><a href="downloads/Step_by_Step_Guide.pdf" target="_blank" rel="noopener">Guide PDF</a><a href="downloads/Answer_Key.pdf" target="_blank" rel="noopener">Answer key PDF</a></div>
+      </div>
+    </aside>
+    <main id="reading" class="reading-area" tabindex="-1">
+      <div id="route-message" class="route-message" role="status" hidden></div>
+      <div class="reading-toolbar"><span id="lesson-location"></span><button id="print-lesson" class="text-button print-button" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4v-7h16v7h-3M7 14h10v7H7z"/></svg>Print this lesson</button></div>
+      <article id="lesson-article" class="lesson-article" aria-labelledby="lesson-title">
+        <h1 id="lesson-title">Loading your lesson…</h1>
+        <div id="lesson-outline" class="lesson-outline" hidden></div>
+        <div id="lesson-content" class="lesson-content"></div>
+      </article>
+      <nav id="lesson-paging" class="lesson-paging" aria-label="Previous and next lessons">
+        <a id="previous-lesson" class="paging-link" href="#"><span>Previous</span><strong></strong></a>
+        <a id="next-lesson" class="paging-link next-link" href="#"><span>Next</span><strong></strong></a>
+      </nav>
+      <p id="sequence-position" class="sequence-position"></p>
+      <footer class="reading-footer">Take your time. Trace the example, then read the next idea.</footer>
+      <noscript><p>This lesson reader needs JavaScript enabled to select lessons. You can still open the <a href="downloads/Step_by_Step_Guide.pdf">complete guide PDF</a>.</p></noscript>
+    </main>
+  </div>
+</body>
+</html>
