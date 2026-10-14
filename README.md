@@ -1,4 +1,4 @@
-[Visit my website here!](https://yur-iko.github.io/computer-architechture-site/)
+[Visit my website here!](https://yur-iko.github.io/computer-architecture-site/)
 
 # Computer Architecture Lesson Reader
 
