@@ -12,6 +12,9 @@
       document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     } catch (_) {}
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600;7..72,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
   <script defer src="assets/lessons.js"></script>
   <script defer src="assets/app.js"></script>
@@ -19,21 +22,22 @@
 <body>
   <a class="skip-link" href="#reading">Skip to the lesson</a>
   <header class="site-header">
+    <button id="menu-toggle" class="icon-button menu-button" type="button" aria-label="Open chapter outline" aria-expanded="false" aria-controls="lesson-sidebar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     <a class="brand" href="#lesson/I.1" aria-label="Computer Architecture, first lesson">
       <svg class="brand-symbol" viewBox="0 0 36 36" aria-hidden="true"><rect x="8" y="8" width="20" height="20" rx="4"/><rect x="13" y="13" width="10" height="10" rx="1"/><path d="M13 3v5m10-5v5M13 28v5m10-5v5M3 13h5m-5 10h5M28 13h5m-5 10h5"/></svg>
-      <span>Computer Architecture<small>Learn one idea at a time.</small></span>
+      <span>Computer <strong>Architecture</strong></span>
     </a>
     <div class="header-actions">
-      <button id="menu-toggle" class="button menu-button" type="button" aria-expanded="false" aria-controls="lesson-sidebar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Lessons</button>
-      <button id="theme-toggle" class="button" type="button" aria-label="Switch to dark theme"><svg id="theme-icon" viewBox="0 0 24 24" aria-hidden="true"></svg><span id="theme-label">Dark theme</span></button>
+      <span class="topbar-label">Self-study reader</span>
+      <button id="theme-toggle" class="button" type="button" aria-label="Switch to dark mode"><svg id="theme-icon" viewBox="0 0 24 24" aria-hidden="true"></svg><span id="theme-label">Dark mode</span></button>
     </div>
   </header>
   <div class="reader-layout">
     <aside id="lesson-sidebar" class="lesson-sidebar" aria-label="Lesson navigation">
       <div class="sidebar-tools">
-        <h2>Lessons</h2>
-        <label for="lesson-search">Find a lesson</label>
-        <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="lesson-search" type="search" placeholder="Try “jump” or “cache”" autocomplete="off"></div>
+        <div class="sidebar-heading"><div><h2>Course outline</h2><p class="sidebar-subtitle">113 lessons · six chapters</p></div><button id="menu-close" class="icon-button close-button" type="button" aria-label="Close chapter outline"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+        <label class="sr-only" for="lesson-search">Search lessons</label>
+        <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="lesson-search" type="search" placeholder="Find a lesson…" autocomplete="off"></div>
         <p id="search-status" class="search-status" aria-live="polite">Introduction + Chapters 1–5</p>
       </div>
       <nav id="chapter-navigation" aria-label="Chapters and lessons"></nav>
@@ -42,8 +46,10 @@
         <a href="#study" class="resource-link">How to study this guide</a>
         <a href="#sources" class="resource-link">Source map &amp; corrections</a>
         <div class="pdf-links"><a href="downloads/Step_by_Step_Guide.pdf" target="_blank" rel="noopener">Guide PDF</a><a href="downloads/Answer_Key.pdf" target="_blank" rel="noopener">Answer key PDF</a></div>
+        <p class="sidebar-footnote">Your last lesson and color mode are saved in this browser.</p>
       </div>
     </aside>
+    <button id="sidebar-scrim" class="sidebar-scrim" type="button" aria-label="Close chapter outline" tabindex="-1"></button>
     <main id="reading" class="reading-area" tabindex="-1">
       <div id="route-message" class="route-message" role="status" hidden></div>
       <div class="reading-toolbar"><span id="lesson-location"></span><button id="print-lesson" class="text-button print-button" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4v-7h16v7h-3M7 14h10v7H7z"/></svg>Print this lesson</button></div>

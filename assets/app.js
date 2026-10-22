@@ -26,8 +26,9 @@
 
   function syncThemeButton() {
     const dark = document.documentElement.dataset.theme === 'dark';
-    $('#theme-label').textContent = dark ? 'Light theme' : 'Dark theme';
-    $('#theme-toggle').setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    $('#theme-label').textContent = dark ? 'Light mode' : 'Dark mode';
+    $('#theme-toggle').setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    $('#theme-toggle').setAttribute('aria-pressed', String(dark));
     $('#theme-icon').innerHTML = dark
       ? '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"/>'
       : '<path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a8.5 8.5 0 1 0 10.8 10.8Z"/>';
@@ -73,12 +74,42 @@
 
   function closeMenu() {
     $('#lesson-sidebar').classList.remove('is-open');
+    $('#sidebar-scrim').classList.remove('visible');
+    document.body.classList.remove('menu-open');
+    $('#reading').inert = false;
     $('#menu-toggle').setAttribute('aria-expanded', 'false');
   }
   $('#menu-toggle').addEventListener('click', () => {
-    const open = $('#lesson-sidebar').classList.toggle('is-open');
-    $('#menu-toggle').setAttribute('aria-expanded', String(open));
-    if (open) $('#lesson-search').focus();
+    if ($('#lesson-sidebar').classList.contains('is-open')) {
+      closeMenu();
+      return;
+    }
+    $('#lesson-sidebar').classList.add('is-open');
+    $('#sidebar-scrim').classList.add('visible');
+    document.body.classList.add('menu-open');
+    $('#reading').inert = true;
+    $('#menu-toggle').setAttribute('aria-expanded', 'true');
+    $('#lesson-search').focus();
+  });
+  for (const selector of ['#menu-close', '#sidebar-scrim']) {
+    $(selector).addEventListener('click', () => {
+      closeMenu();
+      $('#menu-toggle').focus();
+    });
+  }
+  matchMedia('(max-width: 720px)').addEventListener('change', closeMenu);
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab' || !$('#lesson-sidebar').classList.contains('is-open')) return;
+    const targets = [...$('#lesson-sidebar').querySelectorAll('button, input, summary, a[href]')]
+      .filter((element) => element.getClientRects().length);
+    const first = targets[0], last = targets[targets.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && $('#lesson-sidebar').classList.contains('is-open')) {

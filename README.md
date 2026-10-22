@@ -58,3 +58,9 @@ Checked October 14, 2026:
 ## Edit this delivered website
 
 The deployed website is already built. Edit `assets/styles.css` for styling, `assets/app.js` for reader behavior, or `assets/lessons.js` for lesson data. Keep relative paths so the site works at a GitHub Pages repository URL. The lesson data was generated from the same authoring source as the PDF guide.
+
+### Reader styling
+
+The reader shares the Mathematical Modeling site's Literata headings and lesson text, DM Sans controls, spacious page layout, chapter sidebar, theme button, and previous/next cards. Computer Architecture retains its purple palette in both themes and its processor logo. On phones, the chapter outline opens as a slide-out drawer; close it with the close button, the shaded backdrop, Escape, or a lesson selection.
+
+The display fonts load from Google Fonts when online. Georgia and Arial fallbacks keep the complete lessons readable offline. The print stylesheet continues to use Candara/Calibri with a black-and-white A4 layout.
